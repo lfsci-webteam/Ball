@@ -22,8 +22,6 @@ The "device" permission is required for the 'deviceready' event.
 -->
     <feature name="http://api.phonegap.com/1.0/device" />
 	<preference name="orientation" value="portrait" />
-	<plugin name="Accelerometer" value="org.apache.cordova.AccelListener" />
-
     <!--
 Define access to external domains.
 
