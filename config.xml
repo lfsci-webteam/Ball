@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- config.xml reference: https://build.phonegap.com/docs/config-xml -->
+<widget xmlns = "http://www.w3.org/ns/widgets"
+        xmlns:gap = "http://phonegap.com/ns/1.0"
+        id = "com.phonegap.ball"
+        version = "1.0.0">
+
+    <name>Ball</name>
+
+    <description>
+        It's a ball
+    </description>
+
+    <author>
+        Little Don
+    </author>
+
+    <!--
+Enable individual API permissions here.
+The "device" permission is required for the 'deviceready' event.
+-->
+    <feature name="http://api.phonegap.com/1.0/device" />
+
+    <!--
+Define access to external domains.
+
+<access /> - a blank access tag denies access to all external resources.
+<access origin="*" /> - a wildcard access tag allows access to all external resource.
+
+Otherwise, you can specify specific domains:
+-->
+    <access origin="*"/> <!-- allow local pages -->
+
+</widget>
