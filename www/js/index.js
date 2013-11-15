@@ -19,8 +19,8 @@ var y = w / 2;
 var vy = 0;
 
 function ballCircle() {
-	debug("ballCircle");
-	
+	alert("ballCircle");
+
 	navigator.accelerometer.getCurrentAcceleration(function (acceleration) {
 		vx += acceleration.x;
 		vy += acceleration.y;
@@ -46,7 +46,25 @@ function ballCircle() {
 }
 
 function onDeviceReady() {
-	ballCircle();
+	var update = navigator.accelerometer.watchAcceleration(function (acceleration) {
+		vx += acceleration.x;
+		vy += acceleration.y;
+
+		if ((vx < 0 && x + vx < 0) || (vx > 0 && x + vx > w - $("#ball").width()))
+			vx = -0.8 * vx;
+		x += vx;
+
+		if ((vy < 0 && y + vy < 0) || (vy > 0 && y + vy > h - $("#ball").height()))
+			vy = -0.8 * vy;
+		y += vy;
+
+		$("#ball").css("left", x + 'px');
+		$("#ball").css("top", y + 'px');
+
+		$("#data").html("X: " + acceleration.x + "<br />" +
+						"Y: " + acceleration.y + "<br />" +
+						"Z: " + acceleration.z);
+	}, function (error) { debug("Error"); }, { frequency: 20 });
 }
 
 $(document).ready(function () {
