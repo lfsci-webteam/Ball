@@ -15,16 +15,18 @@ var w = window.innerWidth;
 var h = window.innerHeight;
 var x = w / 2;
 var vx = 0;
+var ax = 0;
 var y = w / 2;
 var vy = 0;
+var ay = 0;
 
 function ballCircle() {
 	debug("ballCircle");
-	
-	navigator.accelerometer.getCurrentAcceleration(function (acceleration) {
-		vx += acceleration.x;
-		vy += acceleration.y;
-	}, function () { debug("Error"); });
+
+	//navigator.accelerometer.getCurrentAcceleration(function (acceleration) {
+	vx += ax;
+	vy += ay;
+	//}, function () { debug("Error"); });
 
 	if ((vx < 0 && x + vx < 0) || (vx > 0 && x + vx > w - $("#ball").width()))
 		vx = -0.8 * vx;
@@ -44,6 +46,11 @@ function ballCircle() {
 	//					"Z: " + acceleration.z);
 	//}, function () { debug("Error"); });
 }
+
+var watchAcc = navigator.accelerometer.watchAcceleration(function (acceleration) {
+	ax = acceleration.x;
+	ay = acceleration.y;
+}, function () { debug("error"); }, { frequency: 20 });
 
 function onDeviceReady() {
 	ballCircle();
