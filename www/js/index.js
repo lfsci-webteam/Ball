@@ -24,7 +24,7 @@ function ballCircle() {
 	navigator.accelerometer.getCurrentAcceleration(function (acceleration) {
 		vx += acceleration.x;
 		vy += acceleration.y;
-	}, function (error) { debug(error.toString()); });
+	}, function (error) { alert(error.toString()); });
 
 	if ((vx < 0 && x + vx < 0) || (vx > 0 && x + vx > w - $("#ball").width()))
 		vx = -0.8 * vx;
